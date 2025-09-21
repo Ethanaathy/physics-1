@@ -1,53 +1,47 @@
-/*
-This project uses the Raylib framework to provide us functionality for math, graphics, GUI, input etc.
-See documentation here: https://www.raylib.com/, and examples here: https://www.raylib.com/examples.html
-*/
-
 #include "raylib.h"
 #include "raymath.h"
 #define RAYGUI_IMPLEMENTATION
-#include "raygui.h" 
+#include "raygui.h"
 #include "game.h"
 
-const unsigned int TARGET_FPS = 50; //frames/second
-float dt = 1.0f / TARGET_FPS; //seconds/frame
-float time = 0;
-float x = 500;
-float y = 500;
-float frequency = 1;
-float amplitude = 100;
+const unsigned int TARGET_FPS = 50;
+float dt = 1.0f / TARGET_FPS;
+float timeSec = 0.0f;
 
-//Changes world state
+float x = 500.0f;
+float y = 500.0f;
+float frequency = 1.0f;   // a
+float amplitude = 100.0f; // b
+
 void update()
 {
-    dt = 1.0f / TARGET_FPS;
+    dt = GetFrameTime();
+    if (dt > 0.1f) dt = 0.1f;
+    timeSec += dt;
 
-    float frameDt = GetFrameTime();
-    if (frameDt > 0.1f) frameDt = 0.1f;
-    dt = frameDt;
-
-    time += dt;
-
-    x = x + (-sin(time * frequency)) * frequency * amplitude * dt;
-    y = y + (cos(time * frequency)) * frequency * amplitude * dt;
+    x += (-sinf(timeSec * frequency)) * frequency * amplitude * dt;
+    y += (cosf(timeSec * frequency)) * frequency * amplitude * dt;
 }
 
-//Display world state
 void draw()
 {
     BeginDrawing();
     ClearBackground(BLACK);
-    DrawText("Aathiththan Yogeswaran 101462564", 10, (float)(GetScreenHeight() - 30), 20, LIGHTGRAY);
 
-    GuiSliderBar((Rectangle) { 10, 15, 1000, 20 }, "", TextFormat("%.2f", time), & time, 0, 240);
-    DrawText(TextFormat("T: %6.2f", time), GetScreenWidth() - 140, 10, 30, LIGHTGRAY);
+    DrawText("Aathiththan Yogeswaran 101462564",
+        10, (int)(GetScreenHeight() - 30), 20, LIGHTGRAY);
+
+    Rectangle rSlider = { 10.0f, 15.0f, 1000.0f, 20.0f };
+    GuiSliderBar(rSlider, "", TextFormat("%.2f", timeSec), &timeSec, 0.0f, 240.0f);
+
+    DrawText(TextFormat("T: %6.2f", timeSec),
+        GetScreenWidth() - 140, 10, 30, LIGHTGRAY);
 
     DrawCircle((int)x, (int)y, 70, RED);
-    DrawCircle(
-        (int)(500 + cos(time * frequency) * amplitude),
-        (int)(500 + sin(time * frequency) * amplitude),
-        70, GREEN
-    );
+
+    int gx = (int)(500.0f + cosf(timeSec * frequency) * amplitude);
+    int gy = (int)(500.0f + sinf(timeSec * frequency) * amplitude);
+    DrawCircle(gx, gy, 70, GREEN);
 
     EndDrawing();
 }
