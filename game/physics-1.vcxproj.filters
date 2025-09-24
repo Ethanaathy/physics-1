@@ -23,6 +23,7 @@
     <ClCompile Include="src\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="week 3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\raylib.ico">

@@ -299,7 +299,10 @@
     <ClInclude Include="include\raygui.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="week 3.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\raylib.ico" />
