@@ -1,14 +1,13 @@
 ﻿#include "raylib.h"
 #include "raymath.h"
 
-// ⚠️ Only keep this define in ONE source file in your whole solution.
-// If Week 1 or Week 2 already has it, remove it here to avoid duplicate symbols.
+
 #define RAYGUI_IMPLEMENTATION
 #include "raygui.h"
 
 #include "game.h"
 
-// ---------------------- Simulation Types ----------------------
+//  Simulation Types
 
 struct PhysicsBody {
     Vector2 pos;     // position
@@ -40,7 +39,7 @@ struct PhysicsSimulation {
     }
 };
 
-// ---------------------- Globals ----------------------
+//  Globals 
 
 const unsigned int TARGET_FPS = 60;
 PhysicsSimulation sim;
@@ -62,7 +61,7 @@ int trailCount = 0;
 static inline void ResetTrail() { trailCount = 0; }
 static inline void PushTrail(Vector2 p) { if (trailCount < TRAIL_MAX) trail[trailCount++] = p; }
 
-// ---------------------- Helpers ----------------------
+
 
 static inline void UpdateGravityFromUI()
 {
@@ -84,7 +83,7 @@ static inline void Launch()
     ResetTrail();
 }
 
-// ---------------------- Update & Draw ----------------------
+//Update & Draw 
 
 static void update()
 {
@@ -173,7 +172,7 @@ static void draw()
     EndDrawing();
 }
 
-// ---------------------- Main ----------------------
+//  Main 
 
 int main(void)
 {
