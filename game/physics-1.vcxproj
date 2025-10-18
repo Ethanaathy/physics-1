@@ -299,7 +299,11 @@
     <ClInclude Include="include\raygui.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="week5_ex3.cpp" />
+    <ClCompile Include="week6.cpp" />
+    <ClCompile Include="week5_ex3.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="week 1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
