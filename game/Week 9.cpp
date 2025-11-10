@@ -78,7 +78,7 @@ struct FizziksCircle : public FizziksObjekt {
 
     void draw() override {
         DrawCircleV(position, radius, color);
-        // Name + velocity vector (for fun)
+        
         DrawText(name.c_str(), (int)(position.x - radius), (int)(position.y - radius * 2), 12, LIGHTGRAY);
         DrawLineEx(position, Vector2Add(position, velocity), 1.0f, color);
     }
@@ -197,7 +197,7 @@ private:
 
 public:
     std::vector<FizziksObjekt*> objekts;
-    Vector2 accelerationGravity{ 0, 300 };    // px/s^2 (tune via GUI if you want)
+    Vector2 accelerationGravity{ 0, 300 };    
 
     ~FizziksWorld() {
         for (auto* p : objekts) delete p;
